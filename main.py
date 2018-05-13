@@ -1,10 +1,9 @@
 """
 
-DO NOT MODIFY THIS FILE BEYOND JUST PRINT STATEMENTS!!!
+    This is MAML with multi-dimensional input.
+    The input a 6 dimensional vector. The output is similarly a 2 dimensional vector. 
 
-
-
-
+    Ezy peezy....I hope. 
 
 Usage Instructions:
     10-shot sinusoid:

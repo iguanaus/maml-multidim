@@ -29,8 +29,8 @@ class DataGenerator(object):
             self.amp_range = config.get('amp_range', [0.1, 5.0])
             self.phase_range = config.get('phase_range', [0, np.pi])
             self.input_range = config.get('input_range', [-5.0, 5.0])
-            self.dim_input = 1
-            self.dim_output = 1
+            self.dim_input = 6
+            self.dim_output = 2
         elif 'omniglot' in FLAGS.datasource:
             self.num_classes = config.get('num_classes', FLAGS.num_classes)
             self.img_size = config.get('img_size', (28, 28))
@@ -170,5 +170,9 @@ class DataGenerator(object):
             init_inputs[func] = np.random.uniform(self.input_range[0], self.input_range[1], [self.num_samples_per_class, 1])
             if input_idx is not None:
                 init_inputs[:,input_idx:,0] = np.linspace(self.input_range[0], self.input_range[1], num=self.num_samples_per_class-input_idx, retstep=False)
-            outputs[func] = amp[func] * np.sin(init_inputs[func]-phase[func])
+            temp_ar = amp[func] * np.sin(init_inputs[func]-phase[func])
+            #print(temp_ar)
+            #print(temp_ar.shape)
+            outputs[func] = temp_ar[:,0:2]
+            #outputs[func] = amp[func] * np.sin(init_inputs[func]-phase[func])
         return init_inputs, outputs, amp, phase
